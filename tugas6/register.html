@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Register</title>
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Silahkan Isikan Data</h2>
+        <form>
+            <input type="text" placeholder="First name" required>
+            <input type="text" placeholder="Middle name">
+            <input type="text" placeholder="Last name" required>
+            <input type="date" placeholder="Tanggal Lahir" required>
+            
+            <div class="gender">
+                <label>Jenis Kelamin:</label>
+                <label><input type="radio" name="gender" value="Pria"> Pria</label>
+                <label><input type="radio" name="gender" value="Wanita"> Wanita</label>
+            </div>
+
+            <input type="text" placeholder="Tempat Tinggal" required>
+            <input type="email" placeholder="Email" required>
+            <input type="tel" placeholder="Phone" required>
+            <input type="password" placeholder="Password" required>
+
+            <select required>
+                <option value="" disabled selected>Status</option>
+                <option>Pelajar</option>
+                <option>Mahasiswa</option>
+                <option>Bekerja</option>
+                <option>Lainnya</option>
+            </select>
+
+            <select required>
+                <option value="" disabled selected>Pendidikan</option>
+                <option>SMA</option>
+                <option>D3</option>
+                <option>S1</option>
+                <option>S2 ke atas</option>
+            </select>
+
+            <button type="submit">REGISTER</button>
+            <a href="#">Kembali</a>
+        </form>
+    </div>
+</body>
+</html>

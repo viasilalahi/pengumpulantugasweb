@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Konversi Bilangan</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+    }
+
+    h2 {
+      font-size: 24px;
+    }
+
+    /* SweetAlert2 custom style */
+    .swal2-popup {
+      background-color: #ffe4ec !important; /* Pink muda */
+      border-radius: 15px !important;
+    }
+
+    .swal2-title,
+    .swal2-html-container {
+      color: #333;
+      font-size: 18px;
+    }
+
+    .swal2-confirm {
+      background-color: #f48fb1 !important; /* Tombol OK pink */
+      border: none !important;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Konversi Bilangan</h2>
+  <input type="text" id="inputAngka" placeholder="Masukkan Bilangan Desimal">
+  <button onclick="konversi()">Konversi</button>
+
+  <script>
+    const inputField = document.getElementById("inputAngka");
+
+    // Event: Tekan Enter
+    inputField.addEventListener("keypress", function (event) {
+      if (event.key === "Enter") {
+        konversi();
+      }
+    });
+
+    function konversi() {
+      const input = inputField.value.trim();
+
+      // Cek apakah hanya terdiri dari angka 0-9 dan tidak kosong
+      if (!/^\d+$/.test(input)) {
+        Swal.fire({
+          title: "Masukkan Angka yang benar!",
+          html: "Contoh input tidak valid:<br><ul style='text-align:left; margin-top:10px'></ul>",
+          confirmButtonText: "OK"
+        });
+        return;
+      }
+
+      const angka = parseInt(input);
+
+      const biner = angka.toString(2);
+      const oktal = angka.toString(8);
+      const heksa = angka.toString(16).toUpperCase();
+
+      Swal.fire({
+        title: "Hasil Konversi",
+        html: `Biner : ${biner}<br>Oktal : ${oktal}<br>Heksadesimal : ${heksa}`,
+        confirmButtonText: "OK"
+      });
+
+      inputField.value = ""; // Kosongkan input setelah konversi
+    }
+  </script>
+
+</body>
+</html>

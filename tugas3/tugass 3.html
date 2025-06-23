@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ST Bhinneka - Universitas Satya Terra Bhinneka</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f8f8f8;
+            margin: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center; 
+            align-items: center;    
+            text-align: center;      
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            max-height: 100px;
+        }
+
+        .header h1 {
+            margin-left: 10px;
+            font-size: 2em;
+            display: inline-block;
+        }
+
+        .header small {
+            font-size: 0.6em;
+            display: block;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column; 
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 20px 10px #ccc;
+            width: 60%; 
+            margin: 0 auto;
+        }
+
+        .nav {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .nav h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .nav ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .nav ul li {
+            margin-bottom: 5px;
+        }
+
+        .nav ul li a {
+            text-decoration: none;
+            color: #5c0850;
+        }
+
+        .nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .form-container h2 {
+            text-align: left;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+            font-weight: normal;
+        }
+
+        input[type='text'],
+        input[type='email'],
+        input[type='password'],
+        input[type='number'],
+        input[type='file'],
+        input[type='date'],
+        textarea {
+            width: 60%;
+            padding: 6px;
+            margin-left: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .radio-group,
+        .checkbox-group {
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        .radio-group input,
+        .checkbox-group input {
+            margin-right: 5px;
+        }
+
+        button {
+            margin-left: 105px;
+            background-color: #151515;
+            color: rgb(244, 241, 241);
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #131313;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <a href="https://satyaterrabhinneka.ac.id/">
+            <img src="logo.png" alt="Logo ST Bhinneka" style="max-height: 100px;">
+        </a>
+        <h1>
+            ST Bhinneka
+            <small>UNIVERSITAS </small>
+            <small>SATYA TERRA BHINNEKA </small>
+        </h1>
+    </div>
+    
+    <div class="container">
+        <div class="nav">
+            <h2>Menu Navigasi</h2>
+            <ul>
+                <li><a href="https://satyaterrabhinneka.ac.id/">Beranda</a></li>
+                <li><a href="https://satyaterrabhinneka.ac.id/profil/visi-misi/">Tentang Kami</a></li>
+                <li><a href="https://satyaterrabhinneka.ac.id/kontak/">Hubungi Kami</a></li>
+            </ul>
+        </div>
+
+        <div class="form-container">
+            <h2>Formulir Pengguna</h2>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="nama">Nama:</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="alamat">Alamat:</label>
+                    <textarea id="alamat" name="alamat" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Jenis Kelamin:</label>
+                    <div class="radio-group">
+                        <input type="radio" id="laki" name="gender" value="Laki-laki">
+                        <label for="laki">Laki-laki</label>
+                        <input type="radio" id="perempuan" name="gender" value="Perempuan">
+                        <label for="perempuan">Perempuan</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="usia">Usia:</label>
+                    <input type="number" id="usia" name="usia" min="1">
+                </div>
+                <div class="form-group">
+                    <label>Hobi:</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="olahraga" name="hobi" value="Olahraga">
+                        <label for="olahraga">Olahraga</label>
+                        <input type="checkbox" id="musik" name="hobi" value="Musik">
+                        <label for="musik">Musik</label>
+                        <input type="checkbox" id="membaca" name="hobi" value="Membaca">
+                        <label for="membaca">Membaca</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="gambar">Pilih Gambar:</label>
+                    <input type="file" id="gambar" name="gambar">
+                </div>
+                <div class="form-group">
+                    <label for="tgl_lahir">Tanggal Lahir:</label>
+                    <input type="date" id="tgl_lahir" name="tgl_lahir">
+                </div>
+                <div class="form-group">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
