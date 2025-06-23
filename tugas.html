@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-libraly</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #4a6fa5, #3a5a8f);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Search Section */
+        .search-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+        
+        .search-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .search-input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 12px 15px;
+            border: 2px solid #e1e5ee;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #4a6fa5;
+            box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.2);
+        }
+        
+        .search-button {
+            background: linear-gradient(135deg, #4a6fa5, #3a5a8f);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-button:hover {
+            background: linear-gradient(135deg, #3a5a8f, #2a4a7f);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Search Options */
+        .search-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .search-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .search-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #4a6fa5;
+            cursor: pointer;
+        }
+        
+        .search-option label {
+            font-weight: 500;
+            color: #555;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .search-option input[type="radio"]:checked + label {
+            color: #4a6fa5;
+            font-weight: 600;
+        }
+        
+        .year-input-container {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+        }
+        
+        .year-input {
+            padding: 8px 12px;
+            border: 1px solid #e1e5ee;
+            border-radius: 4px;
+            width: 100px;
+            transition: all 0.3s;
+        }
+        
+        .year-input:focus {
+            outline: none;
+            border-color: #4a6fa5;
+        }
+        
+        /* Book Display Section */
+        .books-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .book-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .book-cover {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-bottom: 1px solid #e1e5ee;
+        }
+        
+        .book-info {
+            padding: 20px;
+        }
+        
+        .book-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        
+        .book-author {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+        }
+        
+        .book-publisher {
+            font-size: 0.85rem;
+            color: #95a5a6;
+            margin-bottom: 10px;
+        }
+        
+        .book-year {
+            display: inline-block;
+            background-color: #4a6fa5;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        /* Results Section */
+        .results-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+        
+        .results-title {
+            color: #4a6fa5;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 30px;
+            color: #777;
+            font-style: italic;
+            display: none;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .search-input-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-options {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-button {
+                width: 100%;
+            }
+            
+            .year-input-container {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            
+            .books-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .book-cover {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .books-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>E-libraly</h1>
+        </header>
+
+        <div class="search-container">
+            <form class="search-form" id="searchForm">
+                <div class="search-input-group">
+                    <input type="text" class="search-input" id="searchKeyword" placeholder="Enter search keyword..." autocomplete="off">
+                    <button type="button" class="search-button" onclick="searchBooks()">Search</button>
+                </div>
+                <div class="search-options">
+                    <div class="search-option">
+                        <input type="radio" id="searchTitle" name="searchType" value="title" checked>
+                        <label for="searchTitle">Title</label>
+                    </div>
+                    <div class="search-option">
+                        <input type="radio" id="searchAuthor" name="searchType" value="author">
+                        <label for="searchAuthor">Author</label>
+                    </div>
+                    <div class="search-option">
+                        <input type="radio" id="searchPublisher" name="searchType" value="publisher">
+                        <label for="searchPublisher">Publisher</label>
+                    </div>
+                    <div class="search-option">
+                        <input type="radio" id="searchTitleYear" name="searchType" value="titleYear">
+                        <label for="searchTitleYear">Title and Year</label>
+                        <div class="year-input-container">
+                            <input type="number" class="year-input" id="yearInput" placeholder="Year" min="1900" max="2023">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="results-container">
+            <h2 class="results-title">Book Collection</h2>
+            <div class="no-results" id="noResults">
+                No books found matching your search criteria.
+            </div>
+            <div class="books-container" id="booksContainer">
+                <!-- Book 1 -->
+                <div class="book-card" data-title="the design of everyday things" data-author="don norman" data-publisher="basic books" data-year="2013">
+                    <img src="arsip/menguasai_pemrograman.jpg" alt="Book Cover" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">Menguasai Pemograman Berorientasi Objek</h3>
+                        <p class="book-author">Ade Rahmat Iskandar</p>
+                        <p class="book-publisher">Informatika</p>
+                        <span class="book-year">2020</span>
+                    </div>
+                </div>
+                
+                <!-- Book 2 -->
+                <div class="book-card" data-title="atomic habits" data-author="james clear" data-publisher="avery" data-year="2018">
+                    <img src="arsip/ID_DPN2019MTH09PN.jpg" alt="Book Cover" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">Dasar-Dasar Pemograman dengan.NET</h3>
+                        <p class="book-author">Ade Rahmat Iskanda</p>
+                        <p class="book-publisher">Informatika</p>
+                        <span class="book-year">2019</span>
+                    </div>
+                </div>
+                
+                <!-- Book 3 -->
+                <div class="book-card" data-title="deep work" data-author="cal newport" data-publisher="grand central publishing" data-year="2016">
+                    <img src="arsip/metodologi.jpg" alt="Book Cover" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">Metodologi Pengembangan Sistem Informasi</h3>
+                        <p class="book-author">Samiaji Sarosa</p>
+                        <p class="book-publisher">Indeks</p>
+                        <span class="book-year">2017</span>
+                    </div>
+                </div>
+                
+                <!-- Book 4 -->
+                <div class="book-card" data-title="digital minimalism" data-author="cal newport" data-publisher="portfolio" data-year="2019">
+                    <img src="arsip/struktur_data.webp" alt="Book Cover" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">Struktur Data</h3>
+                        <p class="book-author">Rosa A.S</p>
+                        <p class="book-publisher">Modula</p>
+                        <span class="book-year">2018</span>
+                    </div>
+                </div>
+                
+                <!-- Book 5 -->
+                <div class="book-card" data-title="clean code" data-author="robert c martin" data-publisher="pearson" data-year="2008">
+                    <img src="arsip/menguasai_pemrograman.jpg" alt="Book Cover" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">Menguasai Pemograman Berorientasi Objek</h3>
+                        <p class="book-author">Ade Rahmat Iskandar</p>
+                        <p class="book-publisher">Informatika</p>
+                        <span class="book-year">2020</span>
+                    </div>
+                </div>
+                
+                <!-- Book 6 -->
+                <div class="book-card" data-title="eloquent javascript" data-author="marijn haverbeke" data-publisher="no starch press" data-year="2018">
+                    <img src="arsip/teori dan praktek.jpg" alt="Book Cover" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">Teori Dan Praktek Sistem Operasi</h3>
+                        <p class="book-author">Zaid Romegar Mair</p>
+                        <p class="book-publisher">Deepublish</p>
+                        <span class="book-year">2018</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2023 Advanced Book Search. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        function searchBooks() {
+            const keyword = document.getElementById('searchKeyword').value.toLowerCase();
+            const searchType = document.querySelector('input[name="searchType"]:checked').value;
+            const year = document.getElementById('yearInput').value;
+            const books = document.querySelectorAll('.book-card');
+            let resultsFound = false;
+
+            // Reset all books to visible first
+            books.forEach(book => {
+                book.style.display = 'block';
+            });
+
+            // If search field is empty, show all books
+            if (!keyword && searchType !== 'titleYear') {
+                document.getElementById('noResults').style.display = 'none';
+                return;
+            }
+
+            // Filter books based on search criteria
+            books.forEach(book => {
+                const bookTitle = book.getAttribute('data-title');
+                const bookAuthor = book.getAttribute('data-author');
+                const bookPublisher = book.getAttribute('data-publisher');
+                const bookYear = book.getAttribute('data-year');
+                let match = false;
+
+                switch(searchType) {
+                    case 'title':
+                        match = bookTitle.includes(keyword);
+                        break;
+                    case 'author':
+                        match = bookAuthor.includes(keyword);
+                        break;
+                    case 'publisher':
+                        match = bookPublisher.includes(keyword);
+                        break;
+                    case 'titleYear':
+                        const titleMatch = keyword ? bookTitle.includes(keyword) : true;
+                        const yearMatch = year ? bookYear === year : true;
+                        match = titleMatch && yearMatch;
+                        break;
+                }
+
+                if (match) {
+                    book.style.display = 'block';
+                    resultsFound = true;
+                } else {
+                    book.style.display = 'none';
+                }
+            });
+
+            // Show no results message if needed
+            if (!resultsFound && (keyword || (searchType === 'titleYear' && year))) {
+                document.getElementById('noResults').style.display = 'block';
+            } else {
+                document.getElementById('noResults').style.display = 'none';
+            }
+        }
+
+        // Make search happen when year field changes
+        document.getElementById('yearInput').addEventListener('input', searchBooks);
+        
+        // Make search happen when title field changes
+        document.getElementById('searchKeyword').addEventListener('input', searchBooks);
+        
+        // Make search happen when radio buttons change
+        document.querySelectorAll('input[name="searchType"]').forEach(radio => {
+            radio.addEventListener('change', searchBooks);
+        });
+    </script>
+</body>
+</html>
