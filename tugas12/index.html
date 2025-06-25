@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>E-libraly</h1>
+        </header>
+        
+        <div class="search-container">
+            <form class="search-form" id="searchForm">
+                <div class="search-input-group">
+                    <input type="text" class="search-input" id="searchKeyword" placeholder="Enter search keyword..." autocomplete="off">
+                    <button type="button" class="search-button" onclick="searchBooks()">Search</button>
+                </div>
+                <div class="search-options">
+                    <div class="search-option">
+                        <input type="radio" id="searchTitle" name="searchType" value="title" checked>
+                         <label for="searchTitle">Title</label>
+                    </div>
+                    <div class="search-option">
+                        <input type="radio" id="searchAuthor" name="searchType" value="author">
+                        <label for="searchAuthor">Author</label>
+                    </div>
+                    <div class="search-option">
+                        <input type="radio" id="searchPublisher" name="searchType" value="publisher">
+                        <label for="searchPublisher">Publisher</label>
+                    </div>
+                    <div class="search-option">
+                        <input type="radio" id="searchTitleYear" name="searchType" value="titleYear">
+                        <label for="searchTitleYear">Title and Year</label>
+                        <div class="year-input-container">
+                            <input type="number" class="year-input" id="yearInput" placeholder="Year" min="1900" max="2023">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Popular Books Section -->
+        <div class="popular-section">
+            <h2 class="section-title">🔥 Buku Populer</h2>
+            <div class="popular-books">
+                <!-- Book 1 -->
+                <div class="book-card" data-title="digital minimalism" data-author="cal newport" data-publisher="portfolio" data-year="2019">
+                    <img src="arsip/struktur_data.webp" alt="Book Cover" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">Struktur Data</h3>
+                        <p class="book-author">Rosa A.S</p>
+                        <p class="book-publisher">Modula</p>
+                        <span class="book-year">2018</span>
+                    </div>
+                </div>
+
+                <!-- Book 2 -->
+                <div class="book-card" data-title="eloquent javascript" data-author="marijn haverbeke" data-publisher="no starch press" data-year="2018">
+                    <img src="arsip/teori dan praktek.jpg" alt="Book Cover" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">Teori Dan Praktek Sistem Operasi</h3>
+                        <p class="book-author">Zaid Romegar Mair</p>
+                        <p class="book-publisher">Deepublish</p>
+                        <span class="book-year">2018</span>
+                    </div>
+                </div>
+
+                <!-- Book 3 -->
+                <div class="book-card" data-title="the design of everyday things" data-author="don norman" data-publisher="basic books" data-year="2013">
+                    <img src="arsip/menguasai_pemrograman.jpg" alt="Book Cover" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">Menguasai Pemograman Berorientasi Objek</h3>
+                        <p class="book-author">Ade Rahmat Iskandar</p>
+                        <p class="book-publisher">Informatika</p>
+                        <span class="book-year">2020</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Container -->
+        <div class="results-container">
+            <h2 class="results-title">Book Collection</h2>
+            <div class="no-results" id="noResults">
+                No books found matching your search criteria.
+            </div>
+            <div class="books-container" id="booksContainer">
+                <!-- Book 1 -->
+                <div class="book-card" data-title="the design of everyday things" data-author="don norman" data-publisher="basic books" data-year="2013">
+                    <img src="arsip/menguasai_pemrograman.jpg" alt="Book Cover" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">Menguasai Pemograman Berorientasi Objek</h3>
+                        <p class="book-author">Ade Rahmat Iskandar</p>
+                        <p class="book-publisher">Informatika</p>
+                        <span class="book-year">2020</span>
+                    </div>
+                </div>
+                
+                <!-- Book 2 -->
+                <div class="book-card" data-title="atomic habits" data-author="james clear" data-publisher="avery" data-year="2018">
+                    <img src="arsip/ID_DPN2019MTH09PN.jpg" alt="Book Cover" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">Dasar-Dasar Pemograman dengan.NET</h3>
+                        <p class="book-author">Ade Rahmat Iskandar</p>
+                        <p class="book-publisher">Informatika</p>
+                        <span class="book-year">2019</span>
+                    </div>
+                </div>
+                
+                <!-- Book 3 -->
+                <div class="book-card" data-title="deep work" data-author="cal newport" data-publisher="grand central publishing" data-year="2016">
+                    <img src="arsip/metodologi.jpg" alt="Book Cover" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">Metodologi Pengembangan Sistem Informasi</h3>
+                        <p class="book-author">Samiaji Sarosa</p>
+                        <p class="book-publisher">Indeks</p>
+                        <span class="book-year">2017</span>
+                    </div>
+                </div>
+                
+                <!-- Book 4 -->
+                <div class="book-card" data-title="digital minimalism" data-author="cal newport" data-publisher="portfolio" data-year="2019">
+                    <img src="arsip/struktur_data.webp" alt="Book Cover" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">Struktur Data</h3>
+                        <p class="book-author">Rosa A.S</p>
+                        <p class="book-publisher">Modula</p>
+                        <span class="book-year">2018</span>
+                    </div>
+                </div>
+                
+                <!-- Book 5 -->
+                <div class="book-card" data-title="clean code" data-author="robert c martin" data-publisher="pearson" data-year="2008">
+                    <img src="arsip/menguasai_pemrograman.jpg" alt="Book Cover" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">Menguasai Pemograman Berorientasi Objek</h3>
+                        <p class="book-author">Ade Rahmat Iskandar</p>
+                        <p class="book-publisher">Informatika</p>
+                        <span class="book-year">2020</span>
+                    </div>
+                </div>
+                
+                <!-- Book 6 -->
+                <div class="book-card" data-title="eloquent javascript" data-author="marijn haverbeke" data-publisher="no starch press" data-year="2018">
+                    <img src="arsip/teori dan praktek.jpg" alt="Book Cover" class="book-cover">
+                    <div class="book-info">
+                        <h3 class="book-title">Teori Dan Praktek Sistem Operasi</h3>
+                        <p class="book-author">Zaid Romegar Mair</p>
+                        <p class="book-publisher">Deepublish</p>
+                        <span class="book-year">2018</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2023 Advanced Book Search. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
